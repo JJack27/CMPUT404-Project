@@ -388,6 +388,7 @@ function get_visible_post_callback(response){
     }else{
 
         for(post of response.posts){
+            console.log(post)
             var card = document.createElement("div");
             card.classList.add("card","home-page-post-card");
 
@@ -437,8 +438,7 @@ function get_visible_post_callback(response){
               content.setAttribute("src", post.content);
               content.setAttribute("width", "100%");
               content.setAttribute("height", "auto");
-            }
-          else if(post.contentType=="application/base64"){
+            } else if(post.contentType=="application/base64"){
               var content = document.createElement("a");
               content.setAttribute('href',post.content);
               content.innerText = "View "+post.title+" in new tab (if application is supported by your browser) or Download (Right click -> Save As)";
@@ -469,6 +469,17 @@ function get_visible_post_callback(response){
             comment_btn.innerText = "Send";
             commentbox.appendChild(comment_textarea);
             commentbox.appendChild(comment_btn);
+
+            // add comment here
+            var comments_div = document.createElement("div");
+            var num_comments_show = Math.min(4, post.comments.length)
+            for (var i =0; i < num_comments_show; i++){
+                var comment_div = document.createElement("div");
+                var comment_author = document.createElement("a");
+                comment_author.classList.add("text-primary");
+                comment_author.innerText = post.comments.author;
+                console.log()
+            }
 
             card_body.appendChild(card_title);
             card_body.appendChild(author_name);
